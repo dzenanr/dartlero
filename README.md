@@ -3,7 +3,9 @@
 
 # dartlero
 
-Model framework for educational purposes.
+Categories: education, class models.
+
+Description: Model framework for educational purposes.
 
 
 
