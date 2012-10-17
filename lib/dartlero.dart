@@ -1,7 +1,7 @@
-library 'dartlero';
+#library('dartlero');
 
-import 'package:unittest/unittest.dart';
+#import('package:unittest/unittest.dart');
 
-part 'model/concept_model.dart';
-part 'model/concept_entities.dart';
+#source('model/concept_model.dart');
+#source('model/concept_entities.dart');
 
