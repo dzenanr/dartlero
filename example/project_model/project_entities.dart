@@ -3,6 +3,12 @@ class Project extends ConceptEntity<Project> {
 
   String _name;
   String description;
+  
+  String get name => _name;
+  set name(String name) {
+    _name = name;
+    code = name;
+  }
 
   Project newEntity() => new Project();
 
@@ -11,12 +17,6 @@ class Project extends ConceptEntity<Project> {
     project.name = name;
     project.description = description;
     return project;
-  }
-  
-  String get name => _name;
-  set name(String name) {
-    _name = name;
-    code = name;
   }
 
   String toString() {
