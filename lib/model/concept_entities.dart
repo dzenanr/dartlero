@@ -1,5 +1,39 @@
 
-abstract class ConceptEntity<T extends ConceptEntity<T>> {
+abstract class ConceptEntityApi<T extends ConceptEntityApi<T>> {
+  
+  ConceptEntityApi<T> newEntity();
+  T copy();
+  String get code;
+  void set code(String code);
+  int compareTo(T entity);
+  
+}
+
+abstract class ConceptEntitiesApi<T extends ConceptEntityApi<T>> {
+  
+  ConceptEntitiesApi<T> newEntities();
+  int get count;
+  int get length;
+  bool get empty;
+  List<T> get list;
+  Iterator<T> iterator();
+  forEach(Function f);
+  bool every(Function f);
+  bool some(Function f);
+  bool add(T entity);
+  bool remove(T entity);
+  clear();
+  bool contains(T entity);
+  T first();
+  T last();
+  T find(String code);
+  ConceptEntitiesApi<T> select(Function f);
+  ConceptEntitiesApi<T> order();
+  ConceptEntitiesApi<T> orderByFunction(Function f);
+  ConceptEntitiesApi<T> copy();
+}
+
+abstract class ConceptEntity<T extends ConceptEntity<T>> implements ConceptEntityApi {
 
   String _code;
 
@@ -46,7 +80,7 @@ abstract class ConceptEntity<T extends ConceptEntity<T>> {
 
 }
 
-abstract class ConceptEntities<T extends ConceptEntity<T>> {
+abstract class ConceptEntities<T extends ConceptEntity<T>> implements ConceptEntitiesApi {
   List<T> _entityList = new List<T>();
   Map<String, T> _entityMap = new Map<String, T>();
 
