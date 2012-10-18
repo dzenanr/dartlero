@@ -2,10 +2,10 @@
 abstract class ConceptEntityApi<T extends ConceptEntityApi<T>> {
   
   ConceptEntityApi<T> newEntity();
-  T copy();
   String get code;
   void set code(String code);
   int compareTo(T entity);
+  T copy();
   
 }
 
@@ -31,6 +31,7 @@ abstract class ConceptEntitiesApi<T extends ConceptEntityApi<T>> {
   ConceptEntitiesApi<T> order();
   ConceptEntitiesApi<T> orderByFunction(Function f);
   ConceptEntitiesApi<T> copy();
+  
 }
 
 abstract class ConceptEntity<T extends ConceptEntity<T>> implements ConceptEntityApi {

@@ -1,8 +1,8 @@
 
 abstract class ConceptModelApi {
   
-  Map<String, ConceptEntities> newEntries();
-  ConceptEntities getEntry(String entryConcept);
+  Map<String, ConceptEntitiesApi> newEntries();
+  ConceptEntitiesApi getEntry(String entryConcept);
   
 }
 
