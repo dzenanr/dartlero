@@ -3,11 +3,11 @@
 
 **Categories**: education, class models.
 
-**Concepts**: Project.
-
 **Description**:
 Model framework for educational purposes.
 An example how to use Dartlero, a model framework for educational purposes.
+
+**Example**: Project model with only Project concept.
 
 **Start**:
 Clone the dartlero project and the open it with Dart Editor. 
