@@ -1,3 +1,4 @@
+part of dartlero;
 
 abstract class ConceptModelApi {
   
