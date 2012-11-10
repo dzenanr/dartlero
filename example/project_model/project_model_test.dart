@@ -133,7 +133,6 @@ testProjects(Projects projects) {
       expect(copiedProjects.empty, isFalse);
       expect(copiedProjects.count, equals(projects.count));
       expect(copiedProjects, isNot(same(projects)));
-      expect(copiedProjects != projects);
       expect(copiedProjects, isNot(equals(projects)));
       copiedProjects.forEach((cp) =>
           expect(cp, isNot(same(projects.find(cp.name)))));

@@ -1,10 +1,10 @@
 part of dartlero;
 
 abstract class ConceptModelApi {
-  
+
   Map<String, ConceptEntitiesApi> newEntries();
   ConceptEntitiesApi getEntry(String entryConcept);
-  
+
 }
 
 abstract class ConceptModel implements ConceptModelApi {
@@ -15,7 +15,7 @@ abstract class ConceptModel implements ConceptModelApi {
     _entryMap = newEntries();
   }
 
-  abstract Map<String, ConceptEntities> newEntries();
+  Map<String, ConceptEntities> newEntries();
 
   ConceptEntities getEntry(String entryConcept) => _entryMap[entryConcept];
 

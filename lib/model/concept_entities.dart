@@ -1,17 +1,17 @@
 part of dartlero;
 
 abstract class ConceptEntityApi<T extends ConceptEntityApi<T>> {
-  
+
   ConceptEntityApi<T> newEntity();
   String get code;
   void set code(String code);
   int compareTo(T entity);
   T copy();
-  
+
 }
 
 abstract class ConceptEntitiesApi<T extends ConceptEntityApi<T>> {
-  
+
   ConceptEntitiesApi<T> newEntities();
   int get count;
   int get length;
@@ -32,7 +32,7 @@ abstract class ConceptEntitiesApi<T extends ConceptEntityApi<T>> {
   ConceptEntitiesApi<T> order();
   ConceptEntitiesApi<T> orderByFunction(Function f);
   ConceptEntitiesApi<T> copy();
-  
+
 }
 
 abstract class ConceptEntity<T extends ConceptEntity<T>> implements ConceptEntityApi {
@@ -41,9 +41,9 @@ abstract class ConceptEntity<T extends ConceptEntity<T>> implements ConceptEntit
 
   //ConceptEntity();
 
-  abstract ConceptEntity<T> newEntity();
+  ConceptEntity<T> newEntity();
 
-  abstract T copy();
+  T copy();
 
   String get code => _code;
   void set code(String code) {
@@ -88,11 +88,11 @@ abstract class ConceptEntities<T extends ConceptEntity<T>> implements ConceptEnt
 
   //ConceptEntities();
 
-  abstract ConceptEntities<T> newEntities();
+  ConceptEntities<T> newEntities();
 
   int get count => _entityList.length;
   int get length => count;
-  bool get empty => _entityList.isEmpty();
+  bool get empty => _entityList.isEmpty;
 
   List<T> get list => new List<T>.from(_entityList);
 
@@ -170,7 +170,7 @@ abstract class ConceptEntities<T extends ConceptEntity<T>> implements ConceptEnt
 
   T last() {
     if (!empty) {
-      return _entityList.last();
+      return _entityList.last;
     }
   }
 
