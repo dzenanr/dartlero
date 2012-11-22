@@ -1,3 +1,4 @@
+part of dartlero_example;
 
 class Project extends ConceptEntity<Project> {
 
