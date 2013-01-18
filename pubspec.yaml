@@ -5,5 +5,4 @@ version: 0.0.2
 description:
   Dartlero is a model framework for educational purposes.
 dependencies:
-  unittest:
-    sdk: unittest
+  unittest: any
