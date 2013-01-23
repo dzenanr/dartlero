@@ -17,10 +17,10 @@ abstract class ConceptEntitiesApi<T extends ConceptEntityApi<T>> {
   int get length;
   bool get empty;
   List<T> get list;
-  Iterator<T> iterator();
+  Iterator<T> get iterator;
   forEach(Function f);
   bool every(Function f);
-  bool some(Function f);
+  bool any(Function f);
   bool add(T entity);
   bool remove(T entity);
   clear();
@@ -96,7 +96,7 @@ abstract class ConceptEntities<T extends ConceptEntity<T>> implements ConceptEnt
 
   List<T> get list => new List<T>.from(_entityList);
 
-  Iterator<T> iterator() => _entityList.iterator();
+  Iterator<T> get iterator => _entityList.iterator;
 
   forEach(Function f) {
     _entityList.forEach(f);
@@ -106,8 +106,8 @@ abstract class ConceptEntities<T extends ConceptEntity<T>> implements ConceptEnt
     return _entityList.every(f);
   }
 
-  bool some(Function f) {
-    return _entityList.some(f);
+  bool any(Function f) {
+    return _entityList.any(f);
   }
 
   bool add(T entity) {
@@ -184,7 +184,7 @@ abstract class ConceptEntities<T extends ConceptEntity<T>> implements ConceptEnt
 
   ConceptEntities<T> select(Function f) {
     var selectedEntities = newEntities();
-    List<T> selectedList = _entityList.filter(f);
+    List<T> selectedList = _entityList.where(f).toList();
     selectedEntities._addFromList(selectedList);
     return selectedEntities;
   }
