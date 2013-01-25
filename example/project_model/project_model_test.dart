@@ -9,7 +9,7 @@ testProjects(Projects projects) {
   group("Testing Projects", () {
     setUp(() {
       var projectCount = 0;
-      expect(projects.count, equals(projectCount));
+      expect(projects.length, equals(projectCount));
 
       var design = new Project();
       expect(design, isNotNull);
@@ -17,7 +17,7 @@ testProjects(Projects projects) {
       design.description =
           'Creating a model of Dartling concepts based on MagicBoxes.';
       projects.add(design);
-      expect(projects.count, equals(++projectCount));
+      expect(projects.length, equals(++projectCount));
 
       var prototype = new Project();
       expect(prototype, isNotNull);
@@ -25,7 +25,7 @@ testProjects(Projects projects) {
       prototype.description =
           'Programming the meta model and the generic model.';
       projects.add(prototype);
-      expect(projects.count, equals(++projectCount));
+      expect(projects.length, equals(++projectCount));
 
       var production = new Project();
       expect(production, isNotNull);
@@ -33,13 +33,13 @@ testProjects(Projects projects) {
       production.description =
           'Programming Dartling.';
       projects.add(production);
-      expect(projects.count, equals(++projectCount));
+      expect(projects.length, equals(++projectCount));
 
       //projects.display('Projects');
     });
     tearDown(() {
       projects.clear();
-      expect(projects.empty, isTrue);
+      expect(projects.isEmpty, isTrue);
     });
     test('Add Project', () {
       var project = new Project();
@@ -49,7 +49,7 @@ testProjects(Projects projects) {
       projects.display('Add Project');
     });
     test('Add Project Without Data', () {
-      var projectCount = projects.count;
+      var projectCount = projects.length;
       var project = new Project();
       expect(project, isNotNull);
       var added = projects.add(project);
@@ -57,7 +57,7 @@ testProjects(Projects projects) {
       projects.display('Add Project Without Data');
     });
     test('Add Project Not Unique', () {
-      var projectCount = projects.count;
+      var projectCount = projects.length;
       var project = new Project();
       expect(project, isNotNull);
       project.name = 'Dartling';
@@ -74,13 +74,13 @@ testProjects(Projects projects) {
     });
     test('Select Projects by Function', () {
       var programmingProjects = projects.select((p) => p.onProgramming);
-      expect(programmingProjects.empty, isFalse);
+      expect(programmingProjects.isEmpty, isFalse);
       expect(programmingProjects.length, equals(2));
       programmingProjects.display('Select Projects by Function');
     });
     test('Select Projects by Function then Add', () {
       var programmingProjects = projects.select((p) => p.onProgramming);
-      expect(programmingProjects.empty, isFalse);
+      expect(programmingProjects.isEmpty, isFalse);
 
       var dartlingTesting = 'Dartling Testing';
       var programmingProject = new Project();
@@ -95,43 +95,43 @@ testProjects(Projects projects) {
       projects.display('Projects');
     });
     test('Select Projects by Function then Remove', () {
-      var projectCount = projects.count;
+      var projectCount = projects.length;
       projects.display('Projects Before Remove');
       var programmingProjects = projects.select((p) => p.onProgramming);
-      expect(programmingProjects.empty, isFalse);
+      expect(programmingProjects.isEmpty, isFalse);
 
       var searchName = 'Dartling';
       var project = programmingProjects.find(searchName);
       expect(project, isNotNull);
       expect(project.name, equals(searchName));
-      var programmingProjectCount = programmingProjects.count;
+      var programmingProjectCount = programmingProjects.length;
       programmingProjects.remove(project);
-      expect(programmingProjects.count, equals(--programmingProjectCount));
-      expect(projects.count, equals(projectCount));
+      expect(programmingProjects.length, equals(--programmingProjectCount));
+      expect(projects.length, equals(projectCount));
     });
     test('Order Projects by Name', () {
       Projects orderedProjects =
           projects.orderByFunction((m,n) => m.nameCompareTo(n));
-      expect(orderedProjects.empty, isFalse);
-      expect(orderedProjects.count, equals(projects.count));
+      expect(orderedProjects.isEmpty, isFalse);
+      expect(orderedProjects.length, equals(projects.length));
 
       orderedProjects.display('Order Projects by Name');
     });
     test('New Project', () {
-      var projectCount = projects.count;
+      var projectCount = projects.length;
       var marketing = new Project();
       expect(marketing, isNotNull);
       marketing.name = 'Dartlng Marketing';
       marketing.description = 'Making Dartling known to the Dart community.';
       var added = projects.add(marketing);
       expect(added, isTrue);
-      expect(projects.count, equals(++projectCount));
+      expect(projects.length, equals(++projectCount));
       projects.display('New Project');
     });
     test('Copy Projects', () {
       Projects copiedProjects = projects.copy();
-      expect(copiedProjects.empty, isFalse);
-      expect(copiedProjects.count, equals(projects.count));
+      expect(copiedProjects.isEmpty, isFalse);
+      expect(copiedProjects.length, equals(projects.length));
       expect(copiedProjects, isNot(same(projects)));
       expect(copiedProjects, isNot(equals(projects)));
       copiedProjects.forEach((cp) =>

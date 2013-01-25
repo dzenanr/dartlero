@@ -13,10 +13,8 @@ abstract class ConceptEntityApi<T extends ConceptEntityApi<T>> {
 abstract class ConceptEntitiesApi<T extends ConceptEntityApi<T>> {
 
   ConceptEntitiesApi<T> newEntities();
-  int get count;
   int get length;
-  bool get empty;
-  List<T> get list;
+  bool get isEmpty;
   Iterator<T> get iterator;
   forEach(Function f);
   bool every(Function f);
@@ -25,21 +23,18 @@ abstract class ConceptEntitiesApi<T extends ConceptEntityApi<T>> {
   bool remove(T entity);
   clear();
   bool contains(T entity);
-  T first();
-  T last();
   T find(String code);
   ConceptEntitiesApi<T> select(Function f);
   ConceptEntitiesApi<T> order();
   ConceptEntitiesApi<T> orderByFunction(Function f);
   ConceptEntitiesApi<T> copy();
+  List<T> toList();
 
 }
 
 abstract class ConceptEntity<T extends ConceptEntity<T>> implements ConceptEntityApi {
 
   String _code;
-
-  //ConceptEntity();
 
   ConceptEntity<T> newEntity();
 
@@ -86,16 +81,10 @@ abstract class ConceptEntities<T extends ConceptEntity<T>> implements ConceptEnt
   List<T> _entityList = new List<T>();
   Map<String, T> _entityMap = new Map<String, T>();
 
-  //ConceptEntities();
-
   ConceptEntities<T> newEntities();
 
-  int get count => _entityList.length;
-  int get length => count;
-  bool get empty => _entityList.isEmpty;
-
-  List<T> get list => new List<T>.from(_entityList);
-
+  int get length => _entityList.length;
+  bool get isEmpty => _entityList.isEmpty;
   Iterator<T> get iterator => _entityList.iterator;
 
   forEach(Function f) {
@@ -162,18 +151,6 @@ abstract class ConceptEntities<T extends ConceptEntity<T>> implements ConceptEnt
     return false;
   }
 
-  T first() {
-    if (!empty) {
-      return _entityList[0];
-    }
-  }
-
-  T last() {
-    if (!empty) {
-      return _entityList.last;
-    }
-  }
-
   T find(String code) {
     return _entityMap[code];
   }
@@ -195,7 +172,7 @@ abstract class ConceptEntities<T extends ConceptEntity<T>> implements ConceptEnt
    */
   ConceptEntities<T> order() {
     ConceptEntities<T> orderedEntities = newEntities();
-    List<T> sortedList = list;
+    List<T> sortedList = toList();
     // in place sort
     sortedList.sort((m,n) => m.compareTo(n));
     orderedEntities._addFromList(sortedList);
@@ -204,7 +181,7 @@ abstract class ConceptEntities<T extends ConceptEntity<T>> implements ConceptEnt
 
   ConceptEntities<T> orderByFunction(Function f) {
     ConceptEntities<T> orderedEntities = newEntities();
-    List<T> sortedList = list;
+    List<T> sortedList = toList();
     // in place sort
     sortedList.sort(f);
     orderedEntities._addFromList(sortedList);
@@ -222,6 +199,8 @@ abstract class ConceptEntities<T extends ConceptEntity<T>> implements ConceptEnt
     }
     return copiedEntities;
   }
+
+  List<T> toList() => _entityList.toList();
 
   display([String title='Entities']) {
     print('');
