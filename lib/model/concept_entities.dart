@@ -32,7 +32,8 @@ abstract class ConceptEntitiesApi<T extends ConceptEntityApi<T>> {
 
 }
 
-abstract class ConceptEntity<T extends ConceptEntity<T>> implements ConceptEntityApi {
+abstract class ConceptEntity<T extends ConceptEntity<T>>
+    implements ConceptEntityApi {
 
   String _code;
 
@@ -77,7 +78,8 @@ abstract class ConceptEntity<T extends ConceptEntity<T>> implements ConceptEntit
 
 }
 
-abstract class ConceptEntities<T extends ConceptEntity<T>> implements ConceptEntitiesApi {
+abstract class ConceptEntities<T extends ConceptEntity<T>>
+    implements ConceptEntitiesApi {
   List<T> _entityList = new List<T>();
   Map<String, T> _entityMap = new Map<String, T>();
 
