@@ -1,11 +1,10 @@
 part of dartlero;
 
-abstract class ConceptEntityApi<T extends ConceptEntityApi<T>> {
+abstract class ConceptEntityApi<T extends ConceptEntityApi<T>> implements Comparable {
 
   ConceptEntityApi<T> newEntity();
   String get code;
   void set code(String code);
-  int compareTo(T entity);
   T copy();
 
 }
