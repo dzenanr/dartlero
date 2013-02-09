@@ -1,8 +1,7 @@
 name: dartlero
+version: 0.0.4
 author: Dzenan Ridjanovic <dzenanr@gmail.com>
+description: Dartlero is a model framework for educational purposes.
 homepage: http://ondart.me/
-version: 0.0.3
-description:
-  Dartlero is a model framework for educational purposes.
 dependencies:
   unittest: any
