@@ -110,12 +110,16 @@ testProjects(Projects projects) {
       expect(projects.length, equals(projectCount));
     });
     test('Order Projects by Name', () {
+      projects.orderByFunction((m,n) => m.nameCompareTo(n));
+      projects.display('Order Projects by Name');
+      /*
       Projects orderedProjects =
           projects.orderByFunction((m,n) => m.nameCompareTo(n));
       expect(orderedProjects.isEmpty, isFalse);
       expect(orderedProjects.length, equals(projects.length));
 
       orderedProjects.display('Order Projects by Name');
+      */
     });
     test('New Project', () {
       var projectCount = projects.length;
