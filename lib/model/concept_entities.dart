@@ -1,6 +1,7 @@
 part of dartlero;
 
-abstract class ConceptEntityApi<T extends ConceptEntityApi<T>> implements Comparable {
+abstract class ConceptEntityApi<T extends ConceptEntityApi<T>>
+    implements Comparable {
 
   ConceptEntityApi<T> newEntity();
   String get code;
@@ -161,7 +162,7 @@ abstract class ConceptEntities<T extends ConceptEntity<T>>
   }
 
   ConceptEntities<T> select(Function f) {
-    var selectedEntities = newEntities();
+    ConceptEntities<T> selectedEntities = newEntities();
     List<T> selectedList = _entityList.where(f).toList();
     selectedEntities._addFromList(selectedList);
     return selectedEntities;
@@ -171,6 +172,17 @@ abstract class ConceptEntities<T extends ConceptEntity<T>>
    * If there is no compareTo method on a specific entity,
    * the ConceptEntity.compareTo method will be used (code if not null).
    */
+  order() {
+    // in place sort
+    _entityList.sort((m,n) => m.compareTo(n));
+  }
+
+  ConceptEntities<T> orderByFunction(Function f) {
+    // in place sort
+    _entityList.sort(f);
+  }
+
+  /*
   ConceptEntities<T> order() {
     ConceptEntities<T> orderedEntities = newEntities();
     List<T> sortedList = toList();
@@ -188,13 +200,14 @@ abstract class ConceptEntities<T extends ConceptEntity<T>>
     orderedEntities._addFromList(sortedList);
     return orderedEntities;
   }
+  */
 
   /**
    * Copies the entities.
    * It is not a deep copy.
    */
   ConceptEntities<T> copy() {
-    var copiedEntities = newEntities();
+    ConceptEntities<T> copiedEntities = newEntities();
     for (T entity in this) {
       copiedEntities.add(entity.copy());
     }
