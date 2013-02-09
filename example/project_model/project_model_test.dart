@@ -1,9 +1,5 @@
-
-import 'package:dartlero/dartlero.dart';
 import 'package:unittest/unittest.dart';
-
-part 'project_entities.dart';
-part 'project_model.dart';
+import '../dartlero_example.dart';
 
 testProjects(Projects projects) {
   group("Testing Projects", () {
