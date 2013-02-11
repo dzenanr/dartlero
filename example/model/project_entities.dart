@@ -16,7 +16,7 @@ class Project extends ConceptEntity<Project> {
   Project newEntity() => new Project();
 
   Project copy() {
-    var project = new Project();
+    var project = super.copy();
     project.name = name;
     project.description = description;
     return project;
@@ -27,7 +27,7 @@ class Project extends ConceptEntity<Project> {
            '    ${super.toString()}, \n '
            '    name: ${name}, \n '
            '    description: ${description}\n'
-           '  },';
+           '  }';
   }
 
   Map<String, Object> toJson() {

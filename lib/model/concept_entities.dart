@@ -44,8 +44,6 @@ abstract class ConceptEntity<T extends ConceptEntity<T>>
 
   ConceptEntity<T> newEntity();
 
-  T copy();
-
   String get code => _code;
   void set code(String code) {
     if (_code == null) {
@@ -72,6 +70,12 @@ abstract class ConceptEntity<T extends ConceptEntity<T>>
    */
   String toString() {
     return 'code: ${_code}';
+  }
+
+  T copy() {
+    T copiedEntity = newEntity();
+    copiedEntity.code = code;
+    return copiedEntity;
   }
 
   Map<String, Object> toJson() {
