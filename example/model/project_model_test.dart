@@ -142,6 +142,19 @@ testProjects(Projects projects) {
       expect(projects.every((p) => p.code != null), isTrue);
       expect(projects.every((p) => p.name != null), isTrue);
     });
+    test('From Projects to JSON', () {
+      var json = projects.toJson();
+      expect(json, isNotNull);
+      print(json);
+    });
+    test('From JSON to Project Model', () {
+      List<Map<String, Object>> json = projects.toJson();
+      projects.clear();
+      expect(projects.isEmpty, isTrue);
+      projects.fromJson(json);
+      expect(projects.isEmpty, isFalse);
+      projects.display('From JSON to Projects');
+    });
   });
 }
 

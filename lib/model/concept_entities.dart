@@ -7,12 +7,14 @@ abstract class ConceptEntityApi<T extends ConceptEntityApi<T>>
   String get code;
   void set code(String code);
   T copy();
-
+  Map<String, Object> toJson();
+  fromJson(Map<String, Object> entityMap);
 }
 
 abstract class ConceptEntitiesApi<T extends ConceptEntityApi<T>> {
 
   ConceptEntitiesApi<T> newEntities();
+  ConceptEntityApi<T> newEntity();
   int get length;
   bool get isEmpty;
   Iterator<T> get iterator;
@@ -29,6 +31,8 @@ abstract class ConceptEntitiesApi<T extends ConceptEntityApi<T>> {
   ConceptEntitiesApi<T> orderByFunction(Function f);
   ConceptEntitiesApi<T> copy();
   List<T> toList();
+  List<Map<String, Object>> toJson();
+  fromJson(List<Map<String, Object>> entitiesList);
 
 }
 
@@ -69,6 +73,16 @@ abstract class ConceptEntity<T extends ConceptEntity<T>>
     return 'code: ${_code}';
   }
 
+  Map<String, Object> toJson() {
+    Map<String, Object> entityMap = new Map<String, Object>();
+    entityMap['code'] = code;
+    return entityMap;
+  }
+
+  fromJson(Map<String, Object> entityMap) {
+    _code = entityMap['code'];
+  }
+
   display([String title]) {
     if (title != null) {
       print(title);
@@ -84,6 +98,7 @@ abstract class ConceptEntities<T extends ConceptEntity<T>>
   Map<String, T> _entityMap = new Map<String, T>();
 
   ConceptEntities<T> newEntities();
+  T newEntity();
 
   int get length => _entityList.length;
   bool get isEmpty => _entityList.isEmpty;
@@ -215,6 +230,25 @@ abstract class ConceptEntities<T extends ConceptEntity<T>>
   }
 
   List<T> toList() => _entityList.toList();
+
+  List<Map<String, Object>> toJson() {
+    List<Map<String, Object>> entityList = new List<Map<String, Object>>();
+    for (T entity in _entityList) {
+      entityList.add(entity.toJson());
+    }
+    return entityList;
+  }
+
+  fromJson(List<Map<String, Object>> entitiesList) {
+    if (length > 0) {
+      throw new JsonError('entities are not empty');
+    }
+    for (Map<String, Object> entityMap in entitiesList) {
+      T entity = newEntity();
+      entity.fromJson(entityMap);
+      add(entity);
+    }
+  }
 
   display([String title='Entities']) {
     print('');
