@@ -31,6 +31,7 @@ abstract class ConceptEntitiesApi<T extends ConceptEntityApi<T>> {
   ConceptEntitiesApi<T> orderByFunction(Function f);
   ConceptEntitiesApi<T> copy();
   List<T> toList();
+  fromList(List<T> list);
   List<Map<String, Object>> toJson();
   fromJson(List<Map<String, Object>> entitiesList);
 
@@ -172,14 +173,10 @@ abstract class ConceptEntities<T extends ConceptEntity<T>>
     return _entityMap[code];
   }
 
-  _addFromList(List<T> other) {
-    other.forEach((entity) => add(entity));
-  }
-
   ConceptEntities<T> select(Function f) {
     ConceptEntities<T> selectedEntities = newEntities();
     List<T> selectedList = _entityList.where(f).toList();
-    selectedEntities._addFromList(selectedList);
+    selectedEntities.fromList(selectedList);
     return selectedEntities;
   }
 
@@ -197,26 +194,6 @@ abstract class ConceptEntities<T extends ConceptEntity<T>>
     _entityList.sort(f);
   }
 
-  /*
-  ConceptEntities<T> order() {
-    ConceptEntities<T> orderedEntities = newEntities();
-    List<T> sortedList = toList();
-    // in place sort
-    sortedList.sort((m,n) => m.compareTo(n));
-    orderedEntities._addFromList(sortedList);
-    return orderedEntities;
-  }
-
-  ConceptEntities<T> orderByFunction(Function f) {
-    ConceptEntities<T> orderedEntities = newEntities();
-    List<T> sortedList = toList();
-    // in place sort
-    sortedList.sort(f);
-    orderedEntities._addFromList(sortedList);
-    return orderedEntities;
-  }
-  */
-
   /**
    * Copies the entities.
    * It is not a deep copy.
@@ -230,6 +207,10 @@ abstract class ConceptEntities<T extends ConceptEntity<T>>
   }
 
   List<T> toList() => _entityList.toList();
+
+  fromList(List<T> list) {
+    list.forEach((entity) => add(entity));
+  }
 
   List<Map<String, Object>> toJson() {
     List<Map<String, Object>> entityList = new List<Map<String, Object>>();
