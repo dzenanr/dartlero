@@ -69,7 +69,7 @@ abstract class ConceptEntity<T extends ConceptEntity<T>>
    * Returns a string that represents this entity by using its code.
    */
   String toString() {
-    return 'code: ${_code}';
+    return 'code: ${code}';
   }
 
   T copy() {
@@ -224,11 +224,11 @@ abstract class ConceptEntities<T extends ConceptEntity<T>>
     return entityList;
   }
 
-  fromJson(List<Map<String, Object>> entitiesList) {
+  fromJson(List<Map<String, Object>> entityList) {
     if (length > 0) {
       throw new JsonError('entities are not empty');
     }
-    for (Map<String, Object> entityMap in entitiesList) {
+    for (Map<String, Object> entityMap in entityList) {
       T entity = newEntity();
       entity.fromJson(entityMap);
       add(entity);
