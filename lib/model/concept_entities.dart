@@ -3,21 +3,22 @@ part of dartlero;
 abstract class ConceptEntityApi<T extends ConceptEntityApi<T>>
     implements Comparable {
 
-  ConceptEntityApi<T> newEntity();
   String get code;
-  void set code(String code);
+  set code(String code);
+  ConceptEntityApi<T> newEntity();
   T copy();
   Map<String, Object> toJson();
   fromJson(Map<String, Object> entityMap);
+  
 }
 
 abstract class ConceptEntitiesApi<T extends ConceptEntityApi<T>> {
 
-  ConceptEntitiesApi<T> newEntities();
-  ConceptEntityApi<T> newEntity();
   int get length;
   bool get isEmpty;
   Iterator<T> get iterator;
+  ConceptEntitiesApi<T> newEntities();
+  ConceptEntityApi<T> newEntity();
   forEach(Function f);
   bool every(Function f);
   bool any(Function f);
@@ -42,10 +43,8 @@ abstract class ConceptEntity<T extends ConceptEntity<T>>
 
   String _code;
 
-  ConceptEntity<T> newEntity();
-
   String get code => _code;
-  void set code(String code) {
+  set code(String code) {
     if (_code == null) {
       _code = code;
     } else {
@@ -101,9 +100,6 @@ abstract class ConceptEntities<T extends ConceptEntity<T>>
     implements ConceptEntitiesApi {
   List<T> _entityList = new List<T>();
   Map<String, T> _entityMap = new Map<String, T>();
-
-  ConceptEntities<T> newEntities();
-  T newEntity();
 
   int get length => _entityList.length;
   bool get isEmpty => _entityList.isEmpty;

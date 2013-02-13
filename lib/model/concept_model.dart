@@ -15,8 +15,6 @@ abstract class ConceptModel implements ConceptModelApi {
     _entryMap = newEntries();
   }
 
-  Map<String, ConceptEntities> newEntries();
-
   ConceptEntities getEntry(String entryConcept) => _entryMap[entryConcept];
 
 }
