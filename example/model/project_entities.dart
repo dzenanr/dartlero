@@ -46,7 +46,7 @@ class Project extends ConceptEntity<Project> {
   bool get onProgramming =>
       description.contains('Programming') ? true : false;
 
-  int nameCompareTo(Project other) {
+  int compareTo(Project other) {
     return name.compareTo(other.name);
   }
 

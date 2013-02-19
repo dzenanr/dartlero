@@ -106,7 +106,7 @@ testProjects(Projects projects) {
       expect(projects.length, equals(projectCount));
     });
     test('Order Projects by Name', () {
-      projects.orderByFunction((m,n) => m.nameCompareTo(n));
+      projects.orderByFunction((m,n) => m.compareTo(n));
       projects.display('Order Projects by Name');
     });
     test('New Project', () {
