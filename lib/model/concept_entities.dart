@@ -8,7 +8,7 @@ abstract class ConceptEntityApi<T extends ConceptEntityApi<T>>
   ConceptEntityApi<T> newEntity();
   T copy();
   Map<String, Object> toJson();
-  fromJson(Map<String, Object> entityMap);
+  void fromJson(Map<String, Object> entityMap);
   
 }
 
@@ -19,22 +19,22 @@ abstract class ConceptEntitiesApi<T extends ConceptEntityApi<T>> {
   Iterator<T> get iterator;
   ConceptEntitiesApi<T> newEntities();
   ConceptEntityApi<T> newEntity();
-  forEach(Function f);
+  void forEach(Function f);
   bool every(Function f);
   bool any(Function f);
   bool add(T entity);
   bool remove(T entity);
-  clear();
+  void clear();
   bool contains(T entity);
   T find(String code);
   ConceptEntitiesApi<T> select(Function f);
-  ConceptEntitiesApi<T> order();
-  ConceptEntitiesApi<T> orderByFunction(Function f);
+  void order();
+  void orderByFunction(Function f);
   ConceptEntitiesApi<T> copy();
   List<T> toList();
   fromList(List<T> list);
   List<Map<String, Object>> toJson();
-  fromJson(List<Map<String, Object>> entitiesList);
+  void fromJson(List<Map<String, Object>> entitiesList);
 
 }
 
@@ -83,11 +83,11 @@ abstract class ConceptEntity<T extends ConceptEntity<T>>
     return entityMap;
   }
 
-  fromJson(Map<String, Object> entityMap) {
+  void fromJson(Map<String, Object> entityMap) {
     _code = entityMap['code'];
   }
 
-  display([String title]) {
+  void display([String title]) {
     if (title != null) {
       print(title);
     }
@@ -105,7 +105,7 @@ abstract class ConceptEntities<T extends ConceptEntity<T>>
   bool get isEmpty => _entityList.isEmpty;
   Iterator<T> get iterator => _entityList.iterator;
 
-  forEach(Function f) {
+  void forEach(Function f) {
     _entityList.forEach(f);
   }
 
@@ -147,7 +147,7 @@ abstract class ConceptEntities<T extends ConceptEntity<T>>
     return removed;
   }
 
-  clear() {
+  void clear() {
     _entityList.clear();
     _entityMap.clear();
   }
@@ -184,12 +184,12 @@ abstract class ConceptEntities<T extends ConceptEntity<T>>
    * If there is no compareTo method on a specific entity,
    * the ConceptEntity.compareTo method will be used (code if not null).
    */
-  order() {
+  void order() {
     // in place sort
     _entityList.sort((m,n) => m.compareTo(n));
   }
 
-  ConceptEntities<T> orderByFunction(Function f) {
+  void orderByFunction(Function f) {
     // in place sort
     _entityList.sort(f);
   }
