@@ -9,7 +9,7 @@ abstract class ConceptEntityApi<T extends ConceptEntityApi<T>>
   T copy();
   Map<String, Object> toJson();
   void fromJson(Map<String, Object> entityMap);
-  
+
 }
 
 abstract class ConceptEntitiesApi<T extends ConceptEntityApi<T>> {
