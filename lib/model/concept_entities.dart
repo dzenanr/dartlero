@@ -220,7 +220,7 @@ abstract class ConceptEntities<T extends ConceptEntity<T>>
     return entityList;
   }
 
-  fromJson(List<Map<String, Object>> entityList) {
+  void fromJson(List<Map<String, Object>> entityList) {
     if (length > 0) {
       throw new JsonError('entities are not empty');
     }

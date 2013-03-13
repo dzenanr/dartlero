@@ -1,7 +1,5 @@
 library dartlero;
 
-import 'dart:json';
-
 import 'package:unittest/unittest.dart';
 
 part 'model/concept_model.dart';
