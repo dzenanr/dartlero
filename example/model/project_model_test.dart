@@ -39,9 +39,11 @@ testProjects(Projects projects) {
     });
     test('Add Project', () {
       var project = new Project();
+      expect(project, isNotNull);
       project.name = 'modelibra';
       project.description = 'domain model framework for educational purposes';
-      projects.add(project);
+      var added = projects.add(project);
+      expect(added, isTrue);
       projects.display('Add Project');
     });
     test('Add Project Without Data', () {
