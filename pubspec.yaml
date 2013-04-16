@@ -4,4 +4,4 @@ author: Dzenan Ridjanovic <dzenanr@gmail.com>
 description: Dartlero is a model framework for educational purposes.
 homepage: http://ondart.me/
 dependencies:
-  unittest: any
+  unittest: 0.4.2
