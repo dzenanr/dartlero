@@ -1,10 +1,10 @@
 part of dartlero;
 
-class DartleroError implements Error {
+class DartleroError extends Error {
 
   final String msg;
 
-  const DartleroError(this.msg);
+  DartleroError(this.msg);
 
   toString() => '*** $msg ***';
 
@@ -12,7 +12,7 @@ class DartleroError implements Error {
 
 class JsonError extends DartleroError {
 
-  const JsonError(String msg) : super(msg);
+  JsonError(String msg) : super(msg);
 
 }
 
