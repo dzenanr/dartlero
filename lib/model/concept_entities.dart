@@ -106,6 +106,8 @@ abstract class ConceptEntities<T extends ConceptEntity<T>>
   Iterator<T> get iterator => _entityList.iterator;
 
   List<T> get internalList => _entityList;
+  // set for Polymer only:
+  // entities.internalList = toObservable(entities.internalList);
   set internalList(List<T> observableList) => _entityList = observableList;
 
   void forEach(Function f) {
