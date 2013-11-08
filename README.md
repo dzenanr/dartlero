@@ -22,6 +22,6 @@ Note changes to promote it into a separate project that depends on dartlero.
 
 [*Learning Dart*](http://www.packtpub.com/learning-dart/book) by Dzenan Ridjanovic & Ivo Balbaert
 
-
+[*Version History*](LOG.md)
 
 
