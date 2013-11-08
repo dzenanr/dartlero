@@ -16,7 +16,11 @@ Run Pub Get (or Pub Upgrade later) to install necessary packages.
 The same example is in the example folder of dartlero.
 Note changes to promote it into a separate project that depends on dartlero.
 
+## More Details
 
+[**dartling: Domain Model Framework**](https://docs.google.com/document/d/1xzjqxbJdYxn6Qpx_kIhCqCCjk5yabbXiOng8sixMjdc/edit?usp=sharing)
+
+[*Learning Dart*](http://www.packtpub.com/learning-dart/book) by Dzenan Ridjanovic & Ivo Balbaert
 
 
 
