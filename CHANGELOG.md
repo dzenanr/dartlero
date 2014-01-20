@@ -1,6 +1,6 @@
 ## Version history of [dartlero](http://pub.dartlang.org/packages/dartlero)
 
-[based on](http://semver.org/)
+based on [Semantic Versioning](http://semver.org/)
 
 *1.0.2* 2013-11-25
 

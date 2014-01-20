@@ -20,7 +20,7 @@ Note changes to promote it into a separate project that depends on dartlero.
 
 [**dartling: Domain Model Framework**](https://docs.google.com/document/d/1xzjqxbJdYxn6Qpx_kIhCqCCjk5yabbXiOng8sixMjdc/edit?usp=sharing)
 
-[*Learning Dart*](http://www.packtpub.com/learning-dart/book) by Dzenan Ridjanovic & Ivo Balbaert
+[*Learning Dart*](http://learningdart.org/)
 
 [*Version History*](CHANGELOG.md)
 
