@@ -62,6 +62,7 @@ abstract class ConceptEntity<T extends ConceptEntity<T>>
     if (code != null) {
       return _code.compareTo(entity.code);
     }
+    return null;
   }
 
   /**
