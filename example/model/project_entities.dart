@@ -2,7 +2,7 @@ part of dartlero_example;
 
 class Project extends ConceptEntity<Project> {
   String _name;
-  String description;
+  String _description;
 
   String get name => _name;
   set name(String name) {
@@ -10,6 +10,12 @@ class Project extends ConceptEntity<Project> {
     if (code == null) {
       code = name;
     }
+  }
+  
+  String get description => _description;
+  set description(String description) {
+    _description = description;
+    notifyReactions(Action.UPDATE, this, "description", description);
   }
 
   Project newEntity() => new Project();

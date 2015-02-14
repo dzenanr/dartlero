@@ -1,6 +1,6 @@
 part of dartlero;
 
-abstract class ConceptEntityApi<T extends ConceptEntityApi<T>> implements Comparable {
+abstract class ConceptEntityApi<T extends ConceptEntityApi<T>> implements Comparable, ActionReaction {
   String get code;
   set code(String code);
   ConceptEntityApi<T> newEntity();
@@ -44,6 +44,8 @@ abstract class ConceptEntity<T extends ConceptEntity<T>> implements ConceptEntit
       throw new Exception('Entity code cannot be updated.');
     }
   }
+  
+  var _reactions = new List<Reaction>();
 
   /**
    * Compares two entities based on codes.
@@ -80,6 +82,11 @@ abstract class ConceptEntity<T extends ConceptEntity<T>> implements ConceptEntit
   void fromJson(Map<String, Object> entityMap) {
     _code = entityMap['code'];
   }
+  
+  startReaction(Reaction reaction) => _reactions.add(reaction);   
+  cancelReaction(Reaction reaction) => _reactions.remove(reaction);
+  notifyReactions(Action action, [ConceptEntityApi entity, String property, Object value]) =>
+    _reactions.forEach((reaction) => reaction(action, entity, property, value));
 
   void display([String title]) {
     if (title != null) {
@@ -151,6 +158,7 @@ abstract class ConceptEntities<T extends ConceptEntity<T>> implements ConceptEnt
   void clear() {
     _entityList.clear();
     _entityMap.clear();
+    notifyReactions(Action.CLEAR);
   }
 
   bool contains(T entity) {
@@ -232,12 +240,10 @@ abstract class ConceptEntities<T extends ConceptEntity<T>> implements ConceptEnt
     }
   }
   
-  startReaction(Reaction reaction) => _reactions.add(reaction);
-    
+  startReaction(Reaction reaction) => _reactions.add(reaction);   
   cancelReaction(Reaction reaction) => _reactions.remove(reaction);
-
-  notifyReactions(Action action, ConceptEntityApi entity) =>
-    _reactions.forEach((reaction) => reaction(action, entity));
+  notifyReactions(Action action, [ConceptEntityApi entity, String property, Object value]) =>
+    _reactions.forEach((reaction) => reaction(action, entity, property, value));
 
   display([String title='Entities']) {
     print('');

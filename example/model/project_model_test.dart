@@ -156,14 +156,42 @@ testProjects(Projects projects) {
       project.name = 'Dartling Documentation';
       projects.add(project);
       expect(projects.length, equals(++projectCount));
-      expect(react(Action.ADD, project), isTrue);
+      expect(react(Action.ADD), isTrue);
       projects.remove(project);
       expect(projects.length, equals(--projectCount));
-      expect(react(Action.REMOVE, project), isTrue);
+      expect(react(Action.REMOVE), isTrue);
+      projects.cancelReaction(react);
+    });
+    test('Reactions to Add and Update Project', () {
+      var projectCount = projects.length;
+      projects.startReaction(react);
+      var project = new Project();
+      project.name = 'Dartling Documentation';
+      projects.add(project);
+      expect(projects.length, equals(++projectCount));
+      expect(react(Action.ADD), isTrue);
+      project.description = 'Different documents about how to use Dartling';
+      expect(react(Action.UPDATE), isTrue);
+      projects.cancelReaction(react);
+    });
+    test('Reactions to Clear Projects', () {
+      projects.startReaction(react);
+      projects.clear();
+      expect(projects.isEmpty, isTrue);
+      expect(react(Action.CLEAR), isTrue);
       projects.cancelReaction(react);
     });
   });
 }
+
+Reaction react = (Action action, [Project project, String property, Object value]) {
+  switch (action) {
+    case Action.ADD: return true;
+    case Action.CLEAR: return true;
+    case Action.REMOVE: return true;
+    case Action.UPDATE: return true;
+  }
+};
 
 main() {
   ProjectModel projectModel = new ProjectModel();
@@ -171,12 +199,7 @@ main() {
   testProjects(projects);
 }
 
-Reaction react = (Action action, Project project) {
-  switch (action) {
-    case Action.ADD: return true;
-    case Action.REMOVE: return true;
-  }
-};
+
 
 
 
