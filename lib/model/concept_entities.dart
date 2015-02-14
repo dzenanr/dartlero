@@ -1,19 +1,15 @@
 part of dartlero;
 
-abstract class ConceptEntityApi<T extends ConceptEntityApi<T>>
-    implements Comparable {
-
+abstract class ConceptEntityApi<T extends ConceptEntityApi<T>> implements Comparable {
   String get code;
   set code(String code);
   ConceptEntityApi<T> newEntity();
   T copy();
   Map<String, Object> toJson();
   void fromJson(Map<String, Object> entityMap);
-
 }
 
-abstract class ConceptEntitiesApi<T extends ConceptEntityApi<T>> {
-
+abstract class ConceptEntitiesApi<T extends ConceptEntityApi<T>> implements ActionReaction {
   int get length;
   bool get isEmpty;
   Iterator<T> get iterator;
@@ -35,12 +31,9 @@ abstract class ConceptEntitiesApi<T extends ConceptEntityApi<T>> {
   fromList(List<T> list);
   List<Map<String, Object>> toJson();
   void fromJson(List<Map<String, Object>> entitiesList);
-
 }
 
-abstract class ConceptEntity<T extends ConceptEntity<T>>
-    implements ConceptEntityApi {
-
+abstract class ConceptEntity<T extends ConceptEntity<T>> implements ConceptEntityApi {
   String _code;
 
   String get code => _code;
@@ -94,13 +87,11 @@ abstract class ConceptEntity<T extends ConceptEntity<T>>
     }
     print(toString());
   }
-
 }
 
-abstract class ConceptEntities<T extends ConceptEntity<T>>
-    implements ConceptEntitiesApi {
-  List<T> _entityList = new List<T>();
-  Map<String, T> _entityMap = new Map<String, T>();
+abstract class ConceptEntities<T extends ConceptEntity<T>> implements ConceptEntitiesApi {
+  var _entityList = new List<T>();
+  var _entityMap = new Map<String, T>();
 
   int get length => _entityList.length;
   bool get isEmpty => _entityList.isEmpty;
@@ -110,7 +101,9 @@ abstract class ConceptEntities<T extends ConceptEntity<T>>
   // set for Polymer only:
   // entities.internalList = toObservable(entities.internalList);
   set internalList(List<T> observableList) => _entityList = observableList;
-
+  // works only if code is not null
+  var _reactions = new List<Reaction>();
+  
   void forEach(Function f) {
     _entityList.forEach(f);
   }
@@ -131,6 +124,7 @@ abstract class ConceptEntities<T extends ConceptEntity<T>>
       } else {
         _entityList.add(entity);
         _entityMap[entity.code] = entity;
+        notifyReactions(Action.ADD, entity);
       }
     } else {
       _entityList.add(entity);
@@ -146,6 +140,7 @@ abstract class ConceptEntities<T extends ConceptEntity<T>>
         _entityList.removeAt(index);
         if (entity.code != null) {
           _entityMap.remove(entity.code);
+          notifyReactions(Action.REMOVE, entity);
         }
         break;
       }
@@ -236,6 +231,13 @@ abstract class ConceptEntities<T extends ConceptEntity<T>>
       add(entity);
     }
   }
+  
+  startReaction(Reaction reaction) => _reactions.add(reaction);
+    
+  cancelReaction(Reaction reaction) => _reactions.remove(reaction);
+
+  notifyReactions(Action action, ConceptEntityApi entity) =>
+    _reactions.forEach((reaction) => reaction(action, entity));
 
   display([String title='Entities']) {
     print('');
@@ -245,5 +247,4 @@ abstract class ConceptEntities<T extends ConceptEntity<T>>
     print(']');
     print('');
   }
-
 }

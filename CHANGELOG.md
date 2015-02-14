@@ -2,7 +2,11 @@
 
 based on [Semantic Versioning](http://semver.org/)
 
-*1.0.3* 2014-02-19?
+*1.0.4* 2015-02-14
+
++ add reaction to ADD and REMOVE actions
+
+*1.0.3* 2014-02-19
 
 + move dartlero example library to model
 + add return null to compareTo in ConceptEntity

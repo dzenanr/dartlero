@@ -1,7 +1,6 @@
 part of dartlero_example;
 
 class Project extends ConceptEntity<Project> {
-
   String _name;
   String description;
 
@@ -49,12 +48,9 @@ class Project extends ConceptEntity<Project> {
   int compareTo(Project other) {
     return name.compareTo(other.name);
   }
-
 }
 
 class Projects extends ConceptEntities<Project> {
-
   Projects newEntities() => new Projects();
   Project newEntity() => new Project();
-
 }

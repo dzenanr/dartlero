@@ -1,3 +1,4 @@
+import 'package:dartlero/dartlero.dart';
 import 'package:unittest/unittest.dart';
 import 'dartlero_example.dart';
 
@@ -26,8 +27,7 @@ testProjects(Projects projects) {
       var production = new Project();
       expect(production, isNotNull);
       production.name = 'Dartling';
-      production.description =
-          'Programming Dartling.';
+      production.description = 'Programming Dartling.';
       projects.add(production);
       expect(projects.length, equals(++projectCount));
 
@@ -149,6 +149,19 @@ testProjects(Projects projects) {
       expect(projects.isEmpty, isFalse);
       projects.display('From JSON to Projects');
     });
+    test('Reactions to Add and Remove Project', () {
+      var projectCount = projects.length;
+      projects.startReaction(react);
+      var project = new Project();
+      project.name = 'Dartling Documentation';
+      projects.add(project);
+      expect(projects.length, equals(++projectCount));
+      expect(react(Action.ADD, project), isTrue);
+      projects.remove(project);
+      expect(projects.length, equals(--projectCount));
+      expect(react(Action.REMOVE, project), isTrue);
+      projects.cancelReaction(react);
+    });
   });
 }
 
@@ -157,3 +170,14 @@ main() {
   Projects projects = projectModel.projects;
   testProjects(projects);
 }
+
+Reaction react = (Action action, Project project) {
+  switch (action) {
+    case Action.ADD: return true;
+    case Action.REMOVE: return true;
+  }
+};
+
+
+
+
