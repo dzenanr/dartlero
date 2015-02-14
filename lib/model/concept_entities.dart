@@ -85,8 +85,8 @@ abstract class ConceptEntity<T extends ConceptEntity<T>> implements ConceptEntit
   
   startReaction(Reaction reaction) => _reactions.add(reaction);   
   cancelReaction(Reaction reaction) => _reactions.remove(reaction);
-  notifyReactions(Action action, [ConceptEntityApi entity, String property, Object value]) =>
-    _reactions.forEach((reaction) => reaction(action, entity, property, value));
+  notifyReactions(Action action, [ConceptEntityApi entity, String propertyName, Object oldValue]) =>
+    _reactions.forEach((reaction) => reaction(action, entity, propertyName, oldValue));
 
   void display([String title]) {
     if (title != null) {
@@ -242,8 +242,8 @@ abstract class ConceptEntities<T extends ConceptEntity<T>> implements ConceptEnt
   
   startReaction(Reaction reaction) => _reactions.add(reaction);   
   cancelReaction(Reaction reaction) => _reactions.remove(reaction);
-  notifyReactions(Action action, [ConceptEntityApi entity, String property, Object value]) =>
-    _reactions.forEach((reaction) => reaction(action, entity, property, value));
+  notifyReactions(Action action, [ConceptEntityApi entity, String propertyName, Object oldValue]) =>
+    _reactions.forEach((reaction) => reaction(action, entity, propertyName, oldValue));
 
   display([String title='Entities']) {
     print('');

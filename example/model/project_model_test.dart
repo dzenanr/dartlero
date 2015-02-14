@@ -184,7 +184,7 @@ testProjects(Projects projects) {
   });
 }
 
-Reaction react = (Action action, [Project project, String property, Object value]) {
+Reaction react = (Action action, [Project project, String propertyName, Object oldValue]) {
   switch (action) {
     case Action.ADD: return true;
     case Action.CLEAR: return true;
@@ -194,7 +194,7 @@ Reaction react = (Action action, [Project project, String property, Object value
 };
 
 main() {
-  ProjectModel projectModel = new ProjectModel();
+  var projectModel = new ProjectModel();
   Projects projects = projectModel.projects;
   testProjects(projects);
 }
