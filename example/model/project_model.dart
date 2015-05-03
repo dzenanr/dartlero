@@ -1,8 +1,7 @@
 part of dartlero_example;
 
 class ProjectModel extends ConceptModel {
-
-  static final String project = 'Project';
+  static const String project = 'Project';
 
   Map<String, ConceptEntities> newEntries() {
     var projects = new Projects();
@@ -12,7 +11,6 @@ class ProjectModel extends ConceptModel {
   }
 
   Projects get projects => getEntry(project);
-
 }
 
 

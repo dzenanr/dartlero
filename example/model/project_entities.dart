@@ -14,8 +14,9 @@ class Project extends ConceptEntity<Project> {
   
   String get description => _description;
   set description(String description) {
+    var oldValue = _description;
     _description = description;
-    notifyReactions(Action.UPDATE, this, "description", description);
+    notifyReactions(Action.UPDATE, this, "description", oldValue);
   }
 
   Project newEntity() => new Project();
