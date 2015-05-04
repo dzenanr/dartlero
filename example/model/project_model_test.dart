@@ -1,5 +1,5 @@
 import 'package:dartlero/dartlero.dart';
-import 'package:unittest/unittest.dart';
+import 'package:test/test.dart';
 import 'dartlero_example.dart';
 
 testProjects(Projects projects) {
@@ -47,7 +47,6 @@ testProjects(Projects projects) {
       projects.display('Add Project');
     });
     test('Add Project Without Data', () {
-      var projectCount = projects.length;
       var project = new Project();
       expect(project, isNotNull);
       var added = projects.add(project);
@@ -55,7 +54,6 @@ testProjects(Projects projects) {
       projects.display('Add Project Without Data');
     });
     test('Add Project Not Unique', () {
-      var projectCount = projects.length;
       var project = new Project();
       expect(project, isNotNull);
       project.name = 'Dartling';

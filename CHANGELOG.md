@@ -2,6 +2,10 @@
 
 based on [Semantic Versioning](http://semver.org/)
 
+*1.0.5* 2015-05-04
+
++ use test package
+
 *1.0.4* 2015-02-14
 
 + add reaction to ADD, UPDATE, REMOVE and CLEAR actions
