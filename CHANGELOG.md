@@ -2,7 +2,7 @@
 
 based on [Semantic Versioning](http://semver.org/)
 
-*1.0.5* 2015-05-04
+*1.0.5* 2015-05-04 (Pub)
 
 + use test package
 
